@@ -9,9 +9,8 @@ const redis = require("redis");
     const getAsync = promisify(client.get).bind(client);
 
 app.get('/jobs', async (req, res) => {
-
     const jobs = await getAsync('github');
-    res.hearder("Access-Control-Allow-Origin", "http://localhost:3000")
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000")
     return res.send(jobs)
 })
 
