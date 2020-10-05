@@ -2,9 +2,9 @@ import { Typography } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
 import React from 'react'
 
-export default function Job ({job}) {
+export default function Job ({job, onClick}) {
     return (
-        <Paper className='job>'>
+        <Paper onClick={onClick} className='job'>
             <div>
                 <Typography variant='h6'>{job.title}</Typography>
                 <Typography variant='h5'>{job.company}</Typography>

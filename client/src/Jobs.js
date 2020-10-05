@@ -2,13 +2,25 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography';
 
 import Job from './Job'
+import JobModal from './JobModal'
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 export default function Jobs ({jobs}) {
-
+    //modal
+    const [open, setOpen] = React.useState(false); 
+    const [selectedJob, selectJob] = React.useState({});
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+    };
+  
+   
+    //pagination
     const numJobs = jobs.length;
     const numPages = Math.ceil(numJobs /50);
 
@@ -24,10 +36,11 @@ export default function Jobs ({jobs}) {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
       };
     
-    console.log('job is', jobs[0]);
+    // console.log('job is', jobs[0]);
 
     return (
         <div className='jobs'>
+            <JobModal open={open} job={selectedJob} handleClose={handleClose} />
             <Typography variant="h4" component="h1">
                 Entry Level Software Jobs
             </Typography>
@@ -37,7 +50,10 @@ export default function Jobs ({jobs}) {
 
             {
                 jobsOnPage.map(
-                    (job, i) => <Job key={i} job={job} />
+                    (job, i) => <Job key={i} job={job} onClick={() => {
+                        handleClickOpen();
+                        selectJob(job)
+                    }} />
                 )
                 
             }

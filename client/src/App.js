@@ -17,7 +17,7 @@ async function fetchJobs(updateCb) {
 
 updateCb(json)
 
-  console.log({json})
+  // console.log({json})
 }
 
 function App() {
